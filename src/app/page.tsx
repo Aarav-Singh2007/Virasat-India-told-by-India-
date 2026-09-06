@@ -1,69 +1,48 @@
-import Image from "next/image";
+import IndiaMap3D from "@/components/IndiaMap3D";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-12 bg-[#F9F6F0] font-sans">
+      <div className="z-10 w-full max-w-7xl items-center justify-between text-sm lg:flex flex-col pt-8">
+        <div className="w-full text-center mb-10">
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-[#2A241F] mb-6 font-serif">
+            Virasat
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-lg md:text-xl text-[#4A433A] max-w-2xl mx-auto mb-8 font-light leading-relaxed">
+            Trace a living map of India to find festivals happening today, crafts still made by hand, and the people carrying them forward.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* ── Start Journey CTA ── */}
+          <Link
+            href="/journey"
+            className="inline-block px-10 py-4 bg-[#A23E33] hover:bg-[#8a3329] text-white 
+                       font-bold font-sans text-lg rounded-full shadow-xl shadow-[#A23E33]/20 
+                       transition-all hover:scale-105 active:scale-95"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            🚂 Start the Journey
+          </Link>
         </div>
-      </main>
-    </div>
+
+        {/* The interactive 3D map component */}
+        <div className="w-full bg-[#FFFFFF] rounded-[2.5rem] overflow-hidden relative shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border border-[#EAE3D9]" style={{ height: '80vh' }}>
+          <IndiaMap3D />
+        </div>
+        
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 w-full text-center px-4">
+          <div className="p-8 bg-white rounded-3xl border border-[#EAE3D9] shadow-sm hover:shadow-md transition-shadow">
+            <h3 className="text-xl font-bold mb-3 text-[#A23E33] font-serif">Interactive 3D Map</h3>
+            <p className="text-[#635A4F] text-sm leading-relaxed">Rotate, pan, zoom, and hover over different states to see their historical significance in 3D.</p>
+          </div>
+          <div className="p-8 bg-white rounded-3xl border border-[#EAE3D9] shadow-sm hover:shadow-md transition-shadow">
+            <h3 className="text-xl font-bold mb-3 text-[#A23E33] font-serif">Heritage Routes</h3>
+            <p className="text-[#635A4F] text-sm leading-relaxed">Follow predefined routes connecting historical monuments and cities across India.</p>
+          </div>
+          <div className="p-8 bg-white rounded-3xl border border-[#EAE3D9] shadow-sm hover:shadow-md transition-shadow">
+            <h3 className="text-xl font-bold mb-3 text-[#A23E33] font-serif">Authentic Data</h3>
+            <p className="text-[#635A4F] text-sm leading-relaxed">Handcrafted UI with heavily researched authentic timelines for the best experience.</p>
+          </div>
+        </div>
+      </div>
+    </main>
   );
 }
