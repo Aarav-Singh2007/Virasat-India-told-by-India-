@@ -9,88 +9,145 @@ export const rajasthanData: StateData = {
 
   introScript:
     "Hold on tight — we're rolling into Rajasthan, the Land of Kings! " +
-    "See those forts on the horizon? They weren't built for show. " +
-    "They were built for survival — out of desert rock, by people who refused to be conquered. " +
-    "Let me tell you how this place became what it is today.",
+    "See those massive battlements on the horizon? They weren't built for decoration — they were built for pure survival out of desert rock. " +
+    "Let me tell you the real stories of this land — the colossal forts, unyielding honor, vibrant attire, royal flavors, and songs that never die.",
 
   outroScript:
-    "And you know what? The most incredible part — all of this is still alive. " +
-    "Let me show you someone who is keeping it alive, right now, with their own two hands.",
+    "And you know what? The most incredible part — all of this is still alive today in the streets, hearths, and workshops of Rajasthan. " +
+    "Let me show you someone who keeps this eternal fire burning with their own two hands.",
 
   timeline: [
+    // ── 1. FORTS & ARCHITECTURE ──
     {
-      id: "raj-1",
-      title: "Desert Kingdoms",
-      period: "6th – 12th Century",
-      image: "/Rajasthan/TharDessert.jpg",
+      id: "raj-forts",
+      title: "Forts of Desert Stone",
+      period: "7th – 16th Century",
+      subCategory: "Forts & Architecture",
+      image: "/Rajasthan/Chittorgarh_panorama.jpg",
+      model3d: {
+        path: "/models/bagan_temple_aerial_scan.glb",
+        title: "Sun Temple & Fort Citadel 3D Scan",
+      },
+      images: [
+        "/Rajasthan/Chittorgarh_panorama.jpg",
+        "/Rajasthan/AmberFort_SheeshMahal.jpg",
+        "/Rajasthan/Mehrangarh_CliffView.jpg",
+        "/Rajasthan/Kumbhalgarh_Wall.jpg",
+      ],
       script:
-        "Rajput clans carved their kingdoms out of desert and rock. " +
-        "Forts weren't vanity — they were survival. No fort, no kingdom.",
-      factBadge: "🏰 Fact unlocked: Rajasthan has more forts than any other Indian state",
+        "Look at Chittorgarh spanning 700 acres, and Amber's Sheesh Mahal where a single candle flame turns into ten thousand reflected stars! " +
+        "Mehrangarh perches on a sheer 400-foot cliff with 36-meter thick walls, while Kumbhalgarh boasts the second-longest continuous wall on Earth after the Great Wall of China.",
+      factBadge: "🏰 Wonder: Kumbhalgarh's 36-km wall is the 2nd longest continuous wall in the world! Rotate the 3D Citadel Scan on the left.",
     },
+
+    // ── 2. VALOR & CODES OF HONOR ──
     {
-      id: "raj-2",
-      title: "The Fort-Building Age",
-      period: "12th – 16th Century",
-      image: "/Rajasthan/Jhoroka.jpg",
+      id: "raj-valor",
+      title: "Legends of Honor & Chetak",
+      period: "1576 & Beyond",
+      subCategory: "Valor & Codes of Honor",
+      image: "/Rajasthan/MaharanaPratap_Portrait.jpg",
+      images: [
+        "/Rajasthan/MaharanaPratap_Portrait.jpg",
+        "/Rajasthan/HaldighatiMap.jpg",
+        "/Rajasthan/Chetak_Statue.jpg",
+      ],
       script:
-        "Chittorgarh, Amber, Jodhpur rise as seats of power. " +
-        "The jharokha arch is born here — defence and decoration in the same breath.",
-      factBadge: "🏛️ Craft spotted: The Jharokha window arch originates in this era",
+        "At the Battle of Haldighati in 1576, Maharana Pratap stood unbowed against overwhelming odds. " +
+        "His legendary steed Chetak carried his wounded master across enemy lines before breathing his last. " +
+        "Yet Rajput honor is equally defined by hospitality — 'Padharo Mhare Desh', where even an enemy arriving as a guest is protected as God.",
+      factBadge: "⚔️ Code of Honor: 'Padharo Mhare Desh' is a sacred code — a guest is revered above all else.",
     },
+
+    // ── 3. ATTIRE & ADORNMENT ──
     {
-      id: "raj-3",
-      title: "Rajput–Mughal Era",
-      period: "16th – 18th Century",
-      image: "/Rajasthan/RajputsAndMugals.jpg",
+      id: "raj-attire",
+      title: "Colors of the Turbans & Kundan",
+      period: "Centuries of Living Adornment",
+      subCategory: "Attire & Adornment",
+      image: "/Rajasthan/Pagdi_Varieties.jpg",
+      images: [
+        "/Rajasthan/Pagdi_Varieties.jpg",
+        "/Rajasthan/Borla_LaacBangles.jpg",
+        "/Rajasthan/Pagdi_AROverlay.png",
+      ],
       script:
-        "Courts began exchanging artists and ideas. " +
-        "Mughal brushstrokes blended with Rajput boldness into miniature paintings like nothing the world had seen.",
-      factBadge: "🎨 Did you know: Rajput-Mughal miniatures show both Indian and Persian influences",
+        "Every twist and vibrant hue of a Rajasthani Pagdi tells a story — signaling region, clan, and festive season before words are even spoken! " +
+        "From Jaipur's world-renowned Kundan-Meenakari jewelcraft to everyday lac bangles and the proud forehead Borla, Rajasthan wears its soul.",
+      factBadge: "👑 Visual Identity: Each twist of the Pagdi reveals a person's exact district & occasion.",
     },
+
+    // ── 4. FOOD & DESERT DELICACIES ──
     {
-      id: "raj-4",
-      title: "The Princely States Era",
-      period: "18th – 20th Century",
-      image: "/Rajasthan/SepiaphotoofJaipurroyalcourt.jpg",
+      id: "raj-food",
+      title: "Flavors Born of the Desert",
+      period: "Royal & Nomadic Heritage",
+      subCategory: "Food & Sensory",
+      image: "/Rajasthan/DalBaatiChurma.jpg",
+      images: [
+        "/Rajasthan/DalBaatiChurma.jpg",
+        "/Rajasthan/GatteKiSabzi.jpg",
+        "/Rajasthan/LaalMaas.jpg",
+        "/Rajasthan/Ghewar.jpg",
+      ],
       script:
-        "Under the British Raj, Rajasthan became a patchwork of 19 princely states. " +
-        "Forts shifted from battlefield to ballroom.",
+        "Desert scarcity sparked culinary magic! Wheat baatis baked in hot embers doused in pure ghee, alongside gram-flour Gatte ki Sabzi born when fresh greens were rare. " +
+        "Dare to taste the fiery red-chili Mathania heat of royal hunting-camp Laal Maas, followed by honeycomb-textured festive Ghewar.",
+      factBadge: "🌶️ Desert Genius: Gatte ki Sabzi was created to survive water and vegetable scarcity.",
     },
+
+    // ── 5. MUSIC, DANCE & LIVING FOLK ART ──
     {
-      id: "raj-5",
-      title: "Integration into India",
-      period: "1947 – 1949",
-      image: "/Rajasthan/MapOf19States.jpg",
+      id: "raj-music",
+      title: "Rhythms, Dance & Phad Scrolls",
+      period: "Living Performances",
+      subCategory: "Music, Dance & Craft",
+      image: "/Rajasthan/PhadPainting_Scroll.jpg",
+      images: [
+        "/Rajasthan/PhadPainting_Scroll.jpg",
+        "/Rajasthan/Ghoomar_Dance.jpg",
+        "/Rajasthan/Kalbelia_Dancer.jpg",
+        "/Rajasthan/Kamaicha_Instrument.jpg",
+        "/Rajasthan/Morchang_Khartal.jpg",
+      ],
       script:
-        "In just two years after Independence, 19 kingdoms unified into one state. " +
-        "It was the largest political integration in modern Indian history.",
-      factBadge: "🗺️ Fact unlocked: Rajasthan was formed through 7 stages of merger between 1948 and 1949",
+        "Hear the soulful resonance of the Kamaicha, Morchang, and clattering Khartal played by Manganiyar masters! " +
+        "Watch the swirling elegance of Ghoomar and the spine-bending serpentine grace of UNESCO-honored Kalbelia, while Bhopa bards unroll giant Phad scrolls to sing ancient epics under starlit skies.",
+      factBadge: "📜 Living Art: In Phad painting, the scroll IS the stage backdrop while the bard sings.",
     },
+
+    // ── 6. FESTIVALS & LIVING TRADITIONS ──
     {
-      id: "raj-6",
-      title: "Present Day",
-      period: "Today",
-      image: "/Rajasthan/HandBlockPrint.jpg",
+      id: "raj-festivals",
+      title: "Celebrations That Never Sleep",
+      period: "Throughout the Year",
+      subCategory: "Festivals & Live Traditions",
+      image: "/Rajasthan/PushkarCamelFair.jpg",
+      images: [
+        "/Rajasthan/PushkarCamelFair.jpg",
+        "/Rajasthan/Teej_Festival.jpg",
+        "/Rajasthan/GangaurProcession.jpg",
+        "/Rajasthan/RajasthanFolkFestival.jpg",
+      ],
       script:
-        "The turbans, the block prints, the folk dances — all still here, still made by hand, still told by the people. " +
-        "This is living heritage.",
+        "From the monsoon swings of Teej and the 18-day clay idol processions of Gangaur, to 50,000 camels under the full moon at Pushkar and Sufi notes floating off Mehrangarh ramparts during RIFF — Rajasthan's calendar never rests.",
+      factBadge: "🐪 Always Alive: Pushkar brings 50,000 decorated camels to a sacred desert oasis.",
     },
   ],
 
   artisan: {
     name: "Ramesh Chippa",
-    craft: "Block-Print Textiles",
+    craft: "Hand Block-Print Textiles",
     state: "Rajasthan",
-    quote: "Every block I press has a story my grandfather pressed before me.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // placeholder — replace with real artisan video
+    quote: "Every carved wooden block I press carries the heartbeat and colors my grandfather carved before me.",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     buyUrl: "https://www.tribesindia.com",
     donateUrl: "https://www.pmvishwakarma.gov.in",
   },
 
   mascotPoses: [
-    { image: "/masscots/Rajasthan_Greeting.png",     label: "greeting"     },
-    { image: "/masscots/Rajasthan_pointing.png",     label: "pointing"     },
+    { image: "/masscots/Rajasthan_Greeting.png", label: "greeting" },
+    { image: "/masscots/Rajasthan_pointing.png", label: "pointing" },
     { image: "/masscots/Rajasthan_StoryTelling.png", label: "storytelling" },
   ],
 };

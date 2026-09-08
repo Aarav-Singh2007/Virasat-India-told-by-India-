@@ -437,6 +437,33 @@ export default function JourneyPage() {
             </Marker>
           ))}
         </ComposableMap>
+
+        {/* ── Travelling Live HUD (Active when train moves) ── */}
+        <AnimatePresence>
+          {stage === "travelling" && introDone && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 flex items-center gap-4 bg-[#171512]/85 backdrop-blur-md border border-[#D9A404]/30 px-6 py-3 rounded-full shadow-2xl pointer-events-none"
+            >
+              <span className="w-2.5 h-2.5 rounded-full bg-[#E87722] animate-ping" />
+              <div className="flex items-center gap-3 text-xs font-sans">
+                <span className="text-[#D9A404] font-bold uppercase tracking-wider">
+                  Express En Route
+                </span>
+                <span className="text-white/30">•</span>
+                <span className="text-[#E9E4D8]">
+                  Approaching: <strong className="text-[#D9A404] font-serif">{visitedSlugs.length === 0 ? "Jaipur, Rajasthan" : "Next Heritage Station"}</strong>
+                </span>
+                <span className="text-white/30 hidden sm:inline">•</span>
+                <span className="text-[#8B7D6B] hidden sm:inline">
+                  Speed: 110 km/h
+                </span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
 
       {/* ── Train window frame overlay ────────────────────────── */}

@@ -199,6 +199,18 @@ export function ArtisanSupportCTA({ isOpen, artisan, onContinue }: CTAProps) {
               </a>
             </div>
 
+            {/* Rajasthan deep-dive link */}
+            {artisan.state === "Rajasthan" && (
+              <a
+                href="/journey/rajasthan"
+                className="block w-full text-center py-3 mb-2 rounded-xl border border-[#A23E33]/40
+                           text-[#A23E33] hover:bg-[#A23E33]/10 hover:border-[#A23E33]/70
+                           font-bold font-sans text-sm transition-all"
+              >
+                🏰 Dive Deeper into Rajasthan →
+              </a>
+            )}
+
             <button
               onClick={onContinue}
               className="w-full py-2.5 rounded-xl text-[#6B6355] hover:text-[#E9E4D8] 

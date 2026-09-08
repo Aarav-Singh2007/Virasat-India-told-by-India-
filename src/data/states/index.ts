@@ -6,9 +6,15 @@ export interface TimelineEra {
   id: string;
   title: string;
   period: string;
-  image: string;        // path relative to /public e.g. "/Rajasthan/TharDessert.jpg"
-  script: string;       // 1–2 sentences Dastaan speaks
-  factBadge?: string;   // optional gamified pop-up text e.g. "📍 Fact unlocked: ..."
+  image: string;        // primary image or first image in carousel/morph
+  images?: string[];    // optional additional images for cross-fade morphing on the side
+  script: string;       // lively, conversational storytelling line Dastaan speaks
+  factBadge?: string;   // gamified badge / fun fact popup
+  subCategory?: string; // e.g. "Forts & Architecture", "Valor & Honor", "Attire & AR", "Food & Flavors", "Living Music & Art", "Festivals"
+  model3d?: {
+    path: string;
+    title: string;
+  };
 }
 
 export interface ArtisanData {
