@@ -84,7 +84,7 @@ export const keralaData: StateData = {
     craft: "Kasavu Weaving",
     state: "Kerala",
     quote: "Before anyone alive can remember it starting — we were already weaving this.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // placeholder
+    videoUrl: "/videos/KerelaStory.mp4",
     buyUrl: "https://www.tribesindia.com",
     donateUrl: "https://www.pmvishwakarma.gov.in",
   },

@@ -140,7 +140,7 @@ export const rajasthanData: StateData = {
     craft: "Hand Block-Print Textiles",
     state: "Rajasthan",
     quote: "Every carved wooden block I press carries the heartbeat and colors my grandfather carved before me.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "/videos/RajasthanStory.mp4",
     buyUrl: "https://www.tribesindia.com",
     donateUrl: "https://www.pmvishwakarma.gov.in",
   },

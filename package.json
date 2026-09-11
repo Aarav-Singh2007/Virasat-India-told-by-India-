@@ -17,6 +17,7 @@
     "@types/topojson-client": "^3.1.5",
     "@xyflow/react": "^12.11.6",
     "d3-geo": "^3.1.1",
+    "edge-tts-universal": "1.4.0",
     "face-api.js": "^0.22.2",
     "framer-motion": "^13.2.0",
     "lucide-react": "^1.41.0",

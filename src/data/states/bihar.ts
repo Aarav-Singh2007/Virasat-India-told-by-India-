@@ -84,7 +84,7 @@ export const biharData: StateData = {
     craft: "Madhubani Painting",
     state: "Bihar",
     quote: "I paint what my grandmother painted — but every line is mine.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // placeholder
+    videoUrl: "/videos/BiharStory.mp4",
     buyUrl: "https://www.tribesindia.com",
     donateUrl: "https://www.pmvishwakarma.gov.in",
   },

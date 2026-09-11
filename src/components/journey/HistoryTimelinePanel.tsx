@@ -29,6 +29,7 @@ interface CardProps {
   index: number;
   total: number;
   direction: number;
+  mascotImage?: string;
 }
 
 const cardVariants = {
@@ -37,7 +38,7 @@ const cardVariants = {
   exit: (dir: number) => ({ x: dir > 0 ? -90 : 90, opacity: 0, scale: 0.98 }),
 };
 
-export function TimelineCard({ era, index, total, direction }: CardProps) {
+export function TimelineCard({ era, index, total, direction, mascotImage }: CardProps) {
   if (!era) return null;
 
   const imageList = era.images && era.images.length > 0 ? era.images : [era.image];
@@ -160,9 +161,33 @@ export function TimelineCard({ era, index, total, direction }: CardProps) {
       </div>
 
       {/* ── Right Column: Rich Narrative & Cultural Lore ── */}
-      <div className="flex-1 flex flex-col justify-center text-left w-full lg:w-5/12 py-2">
+      <div className="relative flex-1 flex flex-col justify-center text-left w-full lg:w-5/12 py-2 overflow-hidden">
+        {/* Subtle personalized AI mascot photo in background during storytelling */}
+        {mascotImage && (
+          <div className="absolute right-0 -bottom-4 w-60 h-72 sm:w-72 sm:h-88 pointer-events-none opacity-[0.16] -z-0 translate-x-4 select-none">
+            <Image
+              src={mascotImage}
+              alt="AI Mascot Dastaan"
+              fill
+              className="object-contain object-bottom"
+            />
+          </div>
+        )}
+
+        {/* Narrator Active Badge */}
+        <div className="flex items-center gap-2 mb-3 relative z-10">
+          <div className="flex items-center gap-1 h-3">
+            <span className="w-1 h-2 bg-[#D9A404] rounded-full animate-bounce" style={{ animationDuration: '0.8s' }} />
+            <span className="w-1 h-3.5 bg-[#D9A404] rounded-full animate-bounce" style={{ animationDuration: '0.6s', animationDelay: '0.2s' }} />
+            <span className="w-1 h-2 bg-[#D9A404] rounded-full animate-bounce" style={{ animationDuration: '1s', animationDelay: '0.4s' }} />
+          </div>
+          <span className="text-[#D9A404] text-xs font-sans font-bold uppercase tracking-wider">
+            AI Guide Dastaan Speaking
+          </span>
+        </div>
+
         {/* Progress header */}
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-2 mb-4 relative z-10">
           {Array.from({ length: total }).map((_, i) => (
             <span
               key={i}
@@ -177,19 +202,19 @@ export function TimelineCard({ era, index, total, direction }: CardProps) {
         </div>
 
         {/* Headline */}
-        <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F2EDE4] font-serif mb-4 leading-tight tracking-tight">
+        <h3 className="relative z-10 text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F2EDE4] font-serif mb-4 leading-tight tracking-tight">
           {era.title}
         </h3>
 
         {/* Story Script */}
-        <p className="text-[#C4B49A] text-base sm:text-lg lg:text-xl font-sans leading-relaxed">
+        <p className="relative z-10 text-[#C4B49A] text-base sm:text-lg lg:text-xl font-sans leading-relaxed">
           {era.script}
         </p>
 
         {/* Golden Fact Badge */}
         {era.factBadge && (
           <motion.div
-            className="mt-6 p-4 rounded-2xl bg-[#D9A404]/10 border border-[#D9A404]/30 shadow-sm"
+            className="relative z-10 mt-6 p-4 rounded-2xl bg-[#D9A404]/10 border border-[#D9A404]/30 shadow-sm"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -213,6 +238,7 @@ interface PanelProps {
   stateName: string;
   tagline: string;
   timeline: TimelineEra[];
+  mascotImage?: string;
   onClose: () => void;
   onComplete: () => void;
   onCardChange?: (era: TimelineEra) => void;
@@ -223,6 +249,7 @@ export default function HistoryTimelinePanel({
   stateName,
   tagline,
   timeline,
+  mascotImage,
   onClose,
   onComplete,
   onCardChange,
@@ -316,6 +343,7 @@ export default function HistoryTimelinePanel({
                     index={currentIndex}
                     total={timeline.length}
                     direction={direction}
+                    mascotImage={mascotImage}
                   />
                 )}
               </AnimatePresence>

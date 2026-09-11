@@ -1,50 +1,72 @@
 import { NextRequest, NextResponse } from "next/server";
+import { EdgeTTS } from "edge-tts-universal";
 
-// Edge TTS / Google TTS proxy handler for high fidelity audio narration
+export const runtime = "nodejs";
+
+// In-memory cache for synthesized audio to ensure instant response on repeated visits
+const audioCache = new Map<string, Buffer>();
+const MAX_CACHE_SIZE = 150;
+
+// Authentic Indian Male Narrator Voice
+// 'en-IN-PrabhatNeural' is Microsoft's premier Indian English male voice:
+// rich, resonant, articulate, cinematic, and authoritative.
+const DEFAULT_MALE_VOICE = "en-IN-PrabhatNeural";
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const text = searchParams.get("text");
+  const voice = searchParams.get("voice") || DEFAULT_MALE_VOICE;
 
   if (!text) {
     return new NextResponse("Missing text query parameter", { status: 400 });
   }
 
-  // Sanitize text
+  // Strip emojis and normalize formatting for speech clarity
   const clean = text
-    .slice(0, 300)
-    .replace(/[^\w\s.,!?'"-]/gi, " ")
+    .replace(/[🏰🏛️🎨🗺️⚔️👑🌶️📜🐪✨🟢⏳🎟️🔒🔥•🌾]/g, "")
+    .replace(/[^\w\s.,!?'"—–-]/gi, " ")
     .replace(/\s+/g, " ")
     .trim();
 
-  try {
-    // Google Translate TTS endpoint provides crisp human-recorded multi-lingual voice
-    // lang=en-IN (Indian English) with natural tone and pronunciation
-    const googleTtsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(
-      clean
-    )}&tl=en-IN&client=tw-ob`;
+  if (!clean) {
+    return new NextResponse("Empty text after cleaning", { status: 400 });
+  }
 
-    const res = await fetch(googleTtsUrl, {
+  const cacheKey = `${voice}:::${clean}`;
+  const cached = audioCache.get(cacheKey);
+  if (cached) {
+    return new NextResponse(new Uint8Array(cached), {
       headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        Referer: "https://translate.google.com/",
+        "Content-Type": "audio/mpeg",
+        "Cache-Control": "public, max-age=86400, s-maxage=86400",
       },
     });
+  }
 
-    if (!res.ok) {
-      return new NextResponse("Failed to fetch audio stream", { status: res.status });
+  try {
+    const tts = new EdgeTTS(clean, voice);
+    const result = await tts.synthesize();
+    const arrayBuffer = await result.audio.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    if (audioCache.size >= MAX_CACHE_SIZE) {
+      const firstKey = audioCache.keys().next().value;
+      if (firstKey) audioCache.delete(firstKey);
     }
+    audioCache.set(cacheKey, buffer);
 
-    const audioBuffer = await res.arrayBuffer();
-
-    return new NextResponse(audioBuffer, {
+    return new NextResponse(new Uint8Array(buffer), {
       headers: {
         "Content-Type": "audio/mpeg",
         "Cache-Control": "public, max-age=86400, s-maxage=86400",
       },
     });
   } catch (err: any) {
-    console.error("TTS generation error:", err);
-    return new NextResponse("Internal Server Error", { status: 500 });
+    console.error("Male TTS generation error:", err);
+    return new NextResponse(
+      JSON.stringify({ error: "Failed to generate neural male speech", details: err?.message }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
   }
 }
+

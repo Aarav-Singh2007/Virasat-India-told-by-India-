@@ -77,6 +77,7 @@ export function ArtisanVideoPlayer({ isOpen, artisan, onClose, onVideoEnd }: Vid
                 src={artisan.videoUrl}
                 className="w-full h-full object-cover"
                 autoPlay
+                playsInline
                 controls
                 onEnded={onVideoEnd}
               />
@@ -90,17 +91,20 @@ export function ArtisanVideoPlayer({ isOpen, artisan, onClose, onVideoEnd }: Vid
             </p>
           </div>
 
-          {/* Manual "I've watched it" button for YouTube (no onEnded available) */}
-          {isYouTube && (
-            <button
-              onClick={onVideoEnd}
-              className="absolute bottom-14 right-6 px-4 py-2 bg-[#A23E33] hover:bg-[#8a3329] 
-                         text-white text-sm font-bold font-sans rounded-xl transition-all 
-                         hover:scale-105 active:scale-95 shadow-lg"
-            >
-              Continue →
-            </button>
-          )}
+          {/* Manual "Continue / Skip" button */}
+          <button
+            onClick={() => {
+              if (videoRef.current) {
+                videoRef.current.pause();
+              }
+              onVideoEnd();
+            }}
+            className="absolute bottom-14 right-6 px-4 py-2 bg-[#A23E33] hover:bg-[#8a3329] 
+                       text-white text-sm font-bold font-sans rounded-xl transition-all 
+                       hover:scale-105 active:scale-95 shadow-lg"
+          >
+            Continue →
+          </button>
         </motion.div>
       )}
     </AnimatePresence>

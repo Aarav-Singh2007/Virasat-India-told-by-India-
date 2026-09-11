@@ -125,12 +125,21 @@ export default function IndiaMap() {
     <div className="relative w-full h-[90vh] flex flex-col items-center overflow-hidden">
       {/* Info Card — translucent panel, bottom-left, part of the map */}
       <div className="absolute bottom-6 left-6 z-10 bg-[#171512]/70 backdrop-blur-md p-6 rounded-2xl shadow-2xl border border-[#6B6355]/50 w-72 pointer-events-none">
-        <h2 className="text-2xl font-bold text-[#A23E33] font-serif">
-          Virasat
-        </h2>
-        <p className="text-sm text-[#E9E4D8] mt-1 font-sans">
-          India told by India
-        </p>
+        <div className="flex items-center gap-3">
+          <img
+            src="/logo.png"
+            alt="Virasat Logo"
+            className="w-10 h-10 object-contain shrink-0"
+          />
+          <div>
+            <h2 className="text-2xl font-bold text-[#A23E33] font-serif leading-tight">
+              Virasat
+            </h2>
+            <p className="text-xs text-[#E9E4D8] font-sans">
+              India told by India
+            </p>
+          </div>
+        </div>
         <div className="mt-6">
           <p className="text-sm font-semibold text-[#6B6355] font-sans">Active Route:</p>
           <p className="text-sm text-[#E9E4D8] font-sans">
